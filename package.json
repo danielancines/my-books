@@ -1,0 +1,24 @@
+{
+  "name": "my-books",
+  "version": "1.0.0",
+  "description": "AngularJS site form scratch",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielancines/my-books.git"
+  },
+  "author": "Daniel Ancines",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielancines/my-books/issues"
+  },
+  "scripts": {
+    "init": "npm install",
+    "install": "bower install",
+    "start": "http-server -a localhost -p 8000"
+  },
+  "homepage": "https://github.com/danielancines/my-books#readme"
+}
