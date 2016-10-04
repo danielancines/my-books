@@ -6,7 +6,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var cors = require('cors');
-var port = process.env.PORT || 7203;
+var port = process.env.PORT;
 var routes;
 
 var environment = process.env.NODE_ENV;
