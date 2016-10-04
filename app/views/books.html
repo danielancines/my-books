@@ -1,0 +1,10 @@
+<h1>{{booksCtrl.title}}</h1>
+<div class="">
+  <ul>
+    <li ng-repeat="book in BooksCtrl.books">
+      <h1>{{book.title}}</h1>
+      <img ng-src="{{book.image}}" width="100" height="200"/>
+      <img src="http://covers.openlibrary.org/b/isbn/0385472579-M.jpg" alt="Small size" />
+    </li>
+  </ul>
+</div>

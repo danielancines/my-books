@@ -1,6 +1,12 @@
-'use strict';
+(function() {
+  'use strict';
+  angular.module('myBooksApp',[
+    'ngRoute',
+    'myBooksApp.books'
+  ])
+  .config(['$locationProvider', '$routeProvider', '$httpProvider', Routes]);
 
-angular.module('myBooksApp', [])
-  .controller('myCtrl', ['$scope', function($scope){
-    $scope.name = "Daniel";
-  }]);
+  function Routes($locationProvider, $routeProvider, $httpProvider){
+    $routeProvider.otherwise({redirectTo: '/404'});
+  }
+})();

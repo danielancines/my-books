@@ -3,16 +3,13 @@
 <head >
   <title>My Books Everywhere</title>
 </head>
-<body ng-controller="myCtrl">
-  <div>
-    <h1>My Books</h1>
-  </div>
+<body>
   <div ng-view></div>
-  <p>
-    {{name}}{{1+2}}
-  </p>
   <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
+  <script src="controllers/books.module.js"></script>
+  <script src="controllers/books.js"></script>
 </body>
 
 </html>

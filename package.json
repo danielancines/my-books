@@ -4,7 +4,9 @@
   "description": "AngularJS site form scratch",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init": "npm install",
+    "install": "bower install",
+    "start": "open http://localhost:7203 && node app/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,10 +17,11 @@
   "bugs": {
     "url": "https://github.com/danielancines/my-books/issues"
   },
-  "scripts": {
-    "init": "npm install",
-    "install": "bower install",
-    "start": "http-server -a localhost -p 8000"
-  },
-  "homepage": "https://github.com/danielancines/my-books#readme"
+  "homepage": "https://github.com/danielancines/my-books#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0"
+  }
 }
