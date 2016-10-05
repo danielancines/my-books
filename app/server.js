@@ -17,17 +17,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(compress());
 
-// routes = require('./routes/index')(app);
-
-console.log('About to crank up node');
-console.log('PORT=' + port);
-console.log('NODE_ENV=' + environment);
-
-// app.get('/ping', function(req, res, next) {
-//     console.log(req.body);
-//     res.send('pong');
-// });
-
 switch (environment) {
     case 'build':
         console.log('** BUILD **');

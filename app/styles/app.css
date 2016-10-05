@@ -1,0 +1,48 @@
+label, input{
+  display:block;
+}
+
+/*body{
+  padding-top: 70px;
+}*/
+
+.mainPageTop{
+  text-align: center;
+}
+
+.bookThumbnail{
+  width: 171px;
+  height: 180px;
+}
+
+.bookDescription{
+  text-align: justify;
+}
+
+.col-xs-6{
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.mainHeader:link {
+  text-decoration: none;
+  color:#377BB5
+}
+
+.page-header{
+  margin-bottom: 0px;
+}
+
+.new-book{
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.new-book input, textarea{
+  margin: 0 0 10px 0;
+}
+
+.new-book-button{
+  float: right;
+  max-width: 200px;
+}

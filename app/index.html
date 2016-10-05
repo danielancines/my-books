@@ -1,15 +1,30 @@
 <!DOCTYPE html >
 <html ng-app="myBooksApp">
 <head >
-  <title>My Books Everywhere</title>
+  <title>YBooks</title>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/styles/app.css">
 </head>
 <body>
+  <div class="page-header mainPageTop">
+    <a class="mainHeader" href="#/"><h1>YBooks <small>Your Personal Books Catalog</small></h1></a>
+  </div>
+  <nav class="mainNavbar navbar navbar-default navbar-static-top">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li><a href="#/new-book">New Book</a></li>
+        <li><a href="#/">Statistics</a></li>
+      </ul>
+    </div>
+  </nav>
   <div ng-view></div>
   <script src="/bower_components/angular/angular.js"></script>
   <script src="/bower_components/angular-route/angular-route.js"></script>
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="app.js"></script>
   <script src="controllers/books.module.js"></script>
+  <script src="controllers/new-book.js"></script>
   <script src="controllers/books.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,11 @@
+<div class="new-book">
+  <form class="">
+    <label for="bookTitle" class="sr-only">Book Title</label>
+    <input class="form-control" type="text" id="bookTitle" placeholder="Title" required="Book Title Required" autofocus ng-model="NewBookCtrl.title">
+    <label for="booskIsbn" class="sr-only">Book Isbn</label>
+    <input class="form-control" type="text" id="bookIsbn" placeholder="IBSN" required="Book Title Required" autofocus ng-model="NewBookCtrl.ibsn">
+    <label for="bookDescription" class="sr-only">Book Description</label>
+    <textarea class="form-control" id="bookDescription" rows="8" cols="40" placeholder="Book description" ng-model="NewBookCtrl.description"></textarea>
+    <button type="submit" ng-click="NewBookCtrl.save({title:NewBookCtrl.title, ibsn:NewBookCtrl.ibsn, description:NewBookCtrl.description})" class="btn btn-primary btn-block new-book-button">Save</button>
+  </form>
+</div>

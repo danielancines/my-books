@@ -3,50 +3,49 @@
 
   angular.module('myBooksApp.books')
   .config(['$routeProvider', route])
-  .controller('Books',books);
+  .controller('BooksController',books);
 
   function route($routeProvider){
     $routeProvider.when('/', {
       templateUrl: 'views/books.html',
-      controller: 'Books',
+      controller: 'BooksController',
       controllerAs: 'BooksCtrl'
     });
   }
 
   function books($http){
     var vm = this;
-    vm.title = 'My Books Everywhere';
-    vm.books = [
-      {
-        title: 'The Dragon Reborn',
-        author: 'Robert Jordan',
-        isbn: '0812513711',
-        review: 'The Wheel weaves as the Wheel wills, and we are only the thread of the Pattern. Moiraine',
-        rating: 4,
-        genres: { 'non-fiction': true, fantasy: true },
-        image: loadImage($http)
-      }
-    ];
+    vm.isbn = "";
+    vm.books = [];
+    vm.books.push({
+      title: "The Lord of the Rings: ",
+      description: "In ancient ting it with his own power so that he could rule all others.",
+      thumbnail: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg"
+    });
+    for (var i = 0; i < 20; i++) {
+      vm.books.push({
+        title: "The Lord of the Rings: 50th Anniversary, One Vol. Edition",
+        description: "In ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others.",
+        thumbnail: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg"
+      });
+    }
+
+    vm.loadImage = function(){
+      $http({
+        method:'GET',
+        url: 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + vm.isbn,
+      }).then(loadImageComplete);
+    };
+
+    function loadImageComplete(data){
+      alert(data.data.items[0].volumeInfo.imageLinks);
+      vm.books.push({
+        title:data.data.items[0].volumeInfo.title,
+        image: data.data.items[0].volumeInfo.imageLinks.thumbnail,
+        description: data.data.items[0].volumeInfo.description
+      });
+    }
   }
 
-  function loadImage($http){
-    $http({
-      method:'GET',
-      url: 'http://openlibrary.org/api/books?bibkeys=ISBN:0201558025&jscmd=data',
-      withCredentials: false,
-      headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
-            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-      }
-    }).then(loadImageComplete);
-    //
-    // $http.get('http://node-cors-server.herokuapp.com/no-cors')
-    //   .then(loadImageComplete);
-  }
 
-  function loadImageComplete(data){
-    alert(data.data.text);
-  }
 })();
