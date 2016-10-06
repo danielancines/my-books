@@ -28,8 +28,16 @@ switch (environment) {
         app.use(express.static('./build/'));
         app.use('/*', express.static('./build/index.html'));
         break;
-    default:
+    case 'dev':
+        port = 7203;
         console.log('** DEV **');
+        app.use(express.static('./app/'));
+        app.use(express.static('./'));
+        // app.use(express.static('./tmp'));
+        app.use('/*', express.static('./app/index.html'));
+    break;
+    default:
+        console.log('** FINAL **');
         app.use(express.static('./app/'));
         app.use(express.static('./'));
         // app.use(express.static('./tmp'));
