@@ -11,9 +11,14 @@ var routes;
 
 var environment = process.env.NODE_ENV;
 
+app.get('/person', function(req,res){
+  res.send('Daniel');
+});
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 app.use(compress());
 
@@ -27,7 +32,7 @@ switch (environment) {
         console.log('** DEV **');
         app.use(express.static('./app/'));
         app.use(express.static('./'));
-        app.use(express.static('./tmp'));
+        // app.use(express.static('./tmp'));
         app.use('/*', express.static('./app/index.html'));
         break;
 }
