@@ -6,7 +6,7 @@
   "scripts": {
     "init": "npm install",
     "install": "bower install",
-    "start": "open http://localhost:7203 && node app/server.js"
+    "start": "node app/server.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,6 @@
     "express": "^4.14.0"
   },
   "engines":{
-    "node": "6.5.0"
+    "node": "6.7.0"
   }
 }
