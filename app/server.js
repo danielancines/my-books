@@ -11,7 +11,7 @@ var routes;
 
 var environment = process.env.NODE_ENV;
 
-app.get('/person', function(req,res){
+app.get('/app/person', function(req,res){
   res.send('Daniel');
 });
 
