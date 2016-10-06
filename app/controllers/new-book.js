@@ -24,7 +24,7 @@
     vm.save = function(newBook){
       $http({
         method: 'POST',
-        url: 'http://localhost:7203/books',
+        url: 'http://ybooks.azurewebsites.net/books',
         data: {title: newBook.title, ibsn: newBook.isbn, description: newBook.description, coverUrl: newBook.bookCoverUrl}
       }).then(function (data){
         vm.books = data.data;

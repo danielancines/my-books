@@ -20,7 +20,7 @@
 
     $http({
       method: 'GET',
-      url: 'http://localhost:7203/books'
+      url: 'http://ybooks.azurewebsites.net/books'
     }).then(function (data){
       vm.books = data.data;
     });
