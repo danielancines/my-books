@@ -1,11 +1,12 @@
 <div class="new-book">
-  <form class="">
-    <label for="bookTitle" class="sr-only">Book Title</label>
-    <input class="form-control" type="text" id="bookTitle" placeholder="Title" required="Book Title Required" autofocus ng-model="NewBookCtrl.title">
+  <form class="new-book-form">
     <label for="booskIsbn" class="sr-only">Book Isbn</label>
-    <input class="form-control" type="text" id="bookIsbn" placeholder="IBSN" required="Book Title Required" autofocus ng-model="NewBookCtrl.ibsn">
+    <input class="form-control" ng-blur="NewBookCtrl.searchBookByIsbn()" type="text" id="bookIsbn" placeholder="IBSN" required="Book Title Required" autofocus ng-model="NewBookCtrl.isbn">
+    <label for="bookTitle" class="sr-only">Book Title</label>
+    <input class="form-control" type="text" id="bookTitle" placeholder="Title" required="Book Title Required" ng-model="NewBookCtrl.title">
     <label for="bookDescription" class="sr-only">Book Description</label>
     <textarea class="form-control" id="bookDescription" rows="8" cols="40" placeholder="Book description" ng-model="NewBookCtrl.description"></textarea>
-    <button type="submit" ng-click="NewBookCtrl.save({title:NewBookCtrl.title, ibsn:NewBookCtrl.ibsn, description:NewBookCtrl.description})" class="btn btn-primary btn-block new-book-button">Save</button>
+    <button type="submit" ng-click="NewBookCtrl.save({title:NewBookCtrl.title, isbn:NewBookCtrl.isbn, description:NewBookCtrl.description, bookCoverUrl:NewBookCtrl.coverUrl})" class="btn btn-primary btn-block new-book-button">Save</button>
   </form>
+  <img class="new-book-image" ng-src="{{NewBookCtrl.coverUrl}}" alt="Book Cover"/>
 </div>

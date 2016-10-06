@@ -8,6 +8,18 @@ var compress = require('compression');
 var cors = require('cors');
 var port = process.env.PORT;
 var routes;
+var books = [{
+  title: "The Lord of the Rings: ",
+  description: "In ancient ting it with his own power so that he could rule all others.",
+  isbn: "",
+  coverUrl: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg"
+}];
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+app.use(compress());
 
 var environment = process.env.NODE_ENV;
 
@@ -15,12 +27,15 @@ app.get('/person', function(req,res){
   res.send('Daniel');
 });
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.post('/books', function(req, res){
+  books.push(req.body);
+  res.send(req.body);
+  // res.sendStatus(200);
+});
 
-app.use(bodyParser.json());
-app.use(compress());
+app.get('/books', function(req,res){
+  res.send(books);
+});
 
 switch (environment) {
     case 'build':

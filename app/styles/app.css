@@ -34,7 +34,7 @@ label, input{
 }
 
 .new-book{
-  max-width: 600px;
+  max-width: 75%;
   margin: 0 auto;
 }
 
@@ -45,4 +45,16 @@ label, input{
 .new-book-button{
   float: right;
   max-width: 200px;
+}
+
+.new-book-form{
+  float: left;
+  margin: 10px;
+  width: 70%;
+}
+
+.new-book-image{
+  margin: 10px 0 0 0;
+  height: 260px;
+  width: auto;
 }

@@ -17,18 +17,13 @@
     var vm = this;
     vm.isbn = "";
     vm.books = [];
-    vm.books.push({
-      title: "The Lord of the Rings: ",
-      description: "In ancient ting it with his own power so that he could rule all others.",
-      thumbnail: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg"
+
+    $http({
+      method: 'GET',
+      url: 'http://localhost:7203/books'
+    }).then(function (data){
+      vm.books = data.data;
     });
-    for (var i = 0; i < 20; i++) {
-      vm.books.push({
-        title: "The Lord of the Rings: 50th Anniversary, One Vol. Edition",
-        description: "In ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others.",
-        thumbnail: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg"
-      });
-    }
 
     vm.loadImage = function(){
       $http({
