@@ -17,7 +17,7 @@
     function getBooks(){
       return $http({
         method: 'GET',
-        url: 'http://localhost:7203/books'
+        url: '/books'
       }).then(getBooksCompleted)
         .catch(getBooksError);
 
@@ -33,7 +33,7 @@
     function postBook(newBook){
       return $http({
         method: 'POST',
-        url: 'http://localhost:7203/books',
+        url: '/books',
         data: {title: newBook.title, ibsn: newBook.isbn, description: newBook.description, coverUrl: newBook.bookCoverUrl}
       }).then(postBookCompleted)
         .catch(postBookError);
