@@ -4,11 +4,13 @@
     'ngRoute',
     'toastr',
     'ngAnimate',
-    'myBooksApp.books'
+    'myBooksApp.books',
+    'myBooksApp.services'
   ])
-  .config(['$locationProvider', '$routeProvider', '$httpProvider', Routes]);
+  .config(['$locationProvider', '$routeProvider', Routes]);
 
   function Routes($locationProvider, $routeProvider, $httpProvider){
+    $locationProvider.html5Mode(true);
     $routeProvider.otherwise({redirectTo: '/404'});
   }
 })();

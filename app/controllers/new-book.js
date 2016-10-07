@@ -13,8 +13,8 @@
     });
   }
 
-  newBook.$inject = ['$http', '$location', 'toastr'];
-  function newBook($http, $location, toastr){
+  newBook.$inject = ['$location', 'toastr', 'booksService'];
+  function newBook($location, toastr, booksService){
     var vm = this;
     vm.coverUrl = "/images/BookCover.jpeg";
     vm.isbn = "1476727651";
@@ -22,26 +22,28 @@
     vm.description = "";
 
     vm.save = function(newBook){
-      $http({
-        method: 'POST',
-        url: 'http://ybooks.azurewebsites.net/books',
-        data: {title: newBook.title, ibsn: newBook.isbn, description: newBook.description, coverUrl: newBook.bookCoverUrl}
-      }).then(function (data){
-        vm.books = data.data;
-        toastr.success("Book saved!", "Success");
-        $location.path('/');
-      });
+      booksService.postBook(newBook)
+      .then(saveCompleted);
+
+      function saveCompleted(result){
+        if (result == 200){
+          toastr.success("Book saved!", "Hooray!!!");
+          $location.path('/');
+        } else {
+          toastr.error("Error on saving. Code: " + result);
+        }
+      }
     };
 
     vm.searchBookByIsbn = function(){
-      $http({
-        method: 'GET',
-        url: 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + vm.isbn
-      }).then(function (data){
-        vm.coverUrl = data.data.items[0].volumeInfo.imageLinks.thumbnail;
-        vm.title = data.data.items[0].volumeInfo.title;
-        vm.description = data.data.items[0].volumeInfo.description;
-      });
+      booksService.searchBookByIsbn(vm.isbn)
+        .then(searchBookByIsbnCompleted);
+
+      function searchBookByIsbnCompleted(book){
+        vm.coverUrl = book.thumbnail;
+        vm.title = book.title;
+        vm.description = book.description;
+      }
     };
   }
 })();

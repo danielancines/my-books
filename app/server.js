@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(compress());
+app.use(cors());
 
 var environment = process.env.NODE_ENV;
 
@@ -29,8 +30,7 @@ app.get('/person', function(req,res){
 
 app.post('/books', function(req, res){
   books.push(req.body);
-  res.send(req.body);
-  // res.sendStatus(200);
+  res.sendStatus(200);
 });
 
 app.get('/books', function(req,res){
