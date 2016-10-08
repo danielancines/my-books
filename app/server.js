@@ -13,7 +13,7 @@ var books = [{
   id: "568bfa64-6357-4df0-b286-397e74f339de",
   title: "The Lord of the Rings",
   description: "In ancient ting it with his own power so that he could rule all others.",
-  isbn: "",
+  isbn: "234234235",
   coverUrl: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg"
 }];
 
@@ -31,8 +31,15 @@ app.get('/person', function(req,res){
 });
 
 app.post('/books', function(req, res){
-  console.log(req.body);
   books.push(req.body);
+  res.sendStatus(200);
+});
+
+app.put('/books', function(req, res){
+  var book = books.find(b=> b.id == req.body.id);
+  book.title = req.body.title;
+  book.description = req.body.description;
+
   res.sendStatus(200);
 });
 
@@ -41,9 +48,7 @@ app.get('/books', function(req,res){
 });
 
 app.get('/books/:id', function(req,res){
-  console.log(req.params.id);
   var book = books.find(b=>b.id == req.params.id);
-  console.log(book);
   res.send(book);
 });
 

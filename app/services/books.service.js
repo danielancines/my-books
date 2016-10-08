@@ -10,7 +10,8 @@
       getBooks: getBooks,
       postBook: postBook,
       searchBookByIsbn: searchBookByIsbn,
-      getBookById: getBookById
+      getBookById: getBookById,
+      updateBook: updateBook
     };
 
     return service;
@@ -52,6 +53,23 @@
         method: 'POST',
         url: '/books',
         data: newBook
+      }).then(postBookCompleted)
+        .catch(postBookError);
+
+      function postBookCompleted(data){
+        return data.status;
+      }
+
+      function postBookError(message){
+        return message.status;
+      }
+    }
+
+    function updateBook(book){
+      return $http({
+        method: 'PUT',
+        url: '/books',
+        data: book
       }).then(postBookCompleted)
         .catch(postBookError);
 

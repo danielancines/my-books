@@ -6,7 +6,7 @@
     <input class="form-control" type="text" id="bookTitle" placeholder="Title" required="Book Title Required" ng-model="NewBookCtrl.book.title">
     <label for="bookDescription" class="sr-only">Book Description</label>
     <textarea class="form-control" id="bookDescription" rows="8" cols="40" placeholder="Book description" ng-model="NewBookCtrl.book.description"></textarea>
-    <button type="button" ng-click="NewBookCtrl.save({title:NewBookCtrl.book.title, isbn:NewBookCtrl.book.isbn, description:NewBookCtrl.book.description, coverUrl:NewBookCtrl.book.coverUrl})" class="btn btn-primary btn-block new-book-button">{{NewBookCtrl.buttonTitle}}</button>
+    <button type="button" ng-click="NewBookCtrl.save()" class="btn btn-primary btn-block new-book-button">{{NewBookCtrl.buttonTitle}}</button>
     <a class="btn btn-default cancel-button" href="/">Cancelar</a>
   </form>
   <img class="new-book-image" ng-src="{{NewBookCtrl.book.coverUrl}}" alt="Book Cover"/>

@@ -37,31 +37,39 @@
       };
     }
 
-    vm.save = function(book){
-      var newBook = {
-        coverUrl: book.coverUrl,
-        description: book.description,
-        id: guid.generate(),
-        isbn: book.isbn,
-        title: book.title
+    vm.save = function(){
+      var book = {
+        coverUrl: vm.book.coverUrl,
+        description: vm.book.description,
+        id: vm.book.id || guid.generate(),
+        isbn: vm.book.isbn,
+        title: vm.book.title
       };
 
-      console.log(newBook);
-      booksService.postBook(newBook)
-      .then(saveCompleted);
+      if (vm.editMode){
+        booksService.updateBook(book)
+        .then(saveCompleted);
+      } else{
+        booksService.postBook(book)
+        .then(saveCompleted);
+      }
 
       function saveCompleted(result){
         if (result == 200){
-          toastr.success("Book saved!", "Hooray!!!");
+          var message = "Book saved!";
+          if (vm.editMode){
+            message = "Book updated";
+          }
+          toastr.success(message, "Hooray!!!");
           $location.path('/');
         } else {
-          toastr.error("Error on saving. Code: " + result);
+          toastr.error("Error Code: " + result);
         }
       }
     };
 
     vm.searchBookByIsbn = function(){
-      if (vm.book.isbn == ""){
+      if (vm.book.isbn == "" || vm.editMode){
         return;
       }
 
