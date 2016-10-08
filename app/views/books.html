@@ -2,7 +2,7 @@
   <div class="">
     <div class="col-xs-6 col-md-1"  ng-repeat="book in BooksCtrl.books">
       <div class="thumbnail">
-        <a href="#/edit-book"><img ng-src="{{book.coverUrl}}" alt="Book Cover" class="bookThumbnail" /></a>
+        <a href="" ng-click="BooksCtrl.editBook(book.id)"><img ng-src="{{book.coverUrl}}" alt="Book Cover" class="bookThumbnail" /></a>
       </div>
     </div>
   </div>

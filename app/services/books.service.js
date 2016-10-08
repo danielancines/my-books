@@ -1,15 +1,16 @@
 (function(){
   'use strict';
 
-  angular.module('myBooksApp.services', ['ng'])
+  angular.module('myBooksApp.services', [])
   .factory('booksService', booksService);
 
-  booksService.$inject = ['$http'];
-  function booksService($http){
+  booksService.$inject = ['$http', 'config'];
+  function booksService($http, config){
     var service = {
       getBooks: getBooks,
       postBook: postBook,
-      searchBookByIsbn: searchBookByIsbn
+      searchBookByIsbn: searchBookByIsbn,
+      getBookById: getBookById
     };
 
     return service;
@@ -30,11 +31,27 @@
       }
     }
 
+    function getBookById(id){
+      return $http({
+        method: 'GET',
+        url: '/books/' + id
+      }).then(getBookCompleted)
+        .catch(getBookError);
+
+      function getBookCompleted(data, status, headers, config){
+        return data.data;
+      }
+
+      function getBookError(message){
+        return message;
+      }
+    }
+
     function postBook(newBook){
       return $http({
         method: 'POST',
         url: '/books',
-        data: {title: newBook.title, ibsn: newBook.isbn, description: newBook.description, coverUrl: newBook.bookCoverUrl}
+        data: newBook
       }).then(postBookCompleted)
         .catch(postBookError);
 
@@ -50,7 +67,7 @@
     function searchBookByIsbn(isbn){
       return $http({
         method: 'GET',
-        url: 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn
+        url: config.googleApiUrl + isbn
       }).then(searchBookByIsbnCompleted)
         .catch(searchBookByIsbnError);
 
@@ -60,9 +77,11 @@
           book.thumbnail = data.data.items[0].volumeInfo.imageLinks.thumbnail;
           book.title = data.data.items[0].volumeInfo.title;
           book.description = data.data.items[0].volumeInfo.description;
+
+          return book;
         }
 
-        return book;
+        return null;
       }
 
       function searchBookByIsbnError(data){

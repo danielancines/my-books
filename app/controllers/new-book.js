@@ -6,22 +6,47 @@
   .controller('NewBookController',newBook);
 
   function route($routeProvider){
-    $routeProvider.when('/new-book', {
+    $routeProvider.when('/new-book/:id', {
+      templateUrl: 'views/new-book.html',
+      controller: 'NewBookController',
+      controllerAs: 'NewBookCtrl'
+    }).when('/new-book', {
       templateUrl: 'views/new-book.html',
       controller: 'NewBookController',
       controllerAs: 'NewBookCtrl'
     });
   }
 
-  newBook.$inject = ['$location', 'toastr', 'booksService'];
-  function newBook($location, toastr, booksService){
+  newBook.$inject = ['$location', '$routeParams', 'toastr', 'booksService', 'config', 'uuid4'];
+  function newBook($location, $routeParams, toastr, booksService, config, guid){
     var vm = this;
-    vm.coverUrl = "/images/BookCover.jpeg";
-    vm.isbn = "1476727651";
-    vm.title = "";
-    vm.description = "";
+    vm.editMode = false;
+    vm.buttonTitle = "Save";
+    vm.book = {
+      coverUrl: config.defaultBookCover
+    };
 
-    vm.save = function(newBook){
+    if ($routeParams.id != null){
+      vm.editMode = true;
+      vm.buttonTitle = "Update";
+      booksService.getBookById($routeParams.id)
+      .then(getBookCompleted);
+
+      function getBookCompleted(book){
+        vm.book = book;
+      };
+    }
+
+    vm.save = function(book){
+      var newBook = {
+        coverUrl: book.coverUrl,
+        description: book.description,
+        id: guid.generate(),
+        isbn: book.isbn,
+        title: book.title
+      };
+
+      console.log(newBook);
       booksService.postBook(newBook)
       .then(saveCompleted);
 
@@ -36,13 +61,22 @@
     };
 
     vm.searchBookByIsbn = function(){
-      booksService.searchBookByIsbn(vm.isbn)
+      if (vm.book.isbn == ""){
+        return;
+      }
+
+      booksService.searchBookByIsbn(vm.book.isbn)
         .then(searchBookByIsbnCompleted);
 
       function searchBookByIsbnCompleted(book){
-        vm.coverUrl = book.thumbnail;
-        vm.title = book.title;
-        vm.description = book.description;
+        if (book == null){
+          toastr.info('Book not found');
+          return;
+        }
+
+        vm.book.coverUrl = book.thumbnail;
+        vm.book.title = book.title;
+        vm.book.description = book.description;
       }
     };
   }

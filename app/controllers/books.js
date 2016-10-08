@@ -13,8 +13,8 @@
     });
   }
 
-  books.$inject = ['booksService'];
-  function books(booksService){
+  books.$inject = ['$location', 'booksService'];
+  function books($location, booksService){
     var vm = this;
     vm.books = [];
 
@@ -23,6 +23,10 @@
 
     function getBooksCompleted(books){
       vm.books = books;
+    }
+
+    vm.editBook = function(id){
+      $location.path('/new-book/' + id);
     };
   }
 })();

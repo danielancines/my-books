@@ -58,3 +58,9 @@ label, input{
   height: 260px;
   width: auto;
 }
+
+.cancel-button{
+  float:right;
+  margin-right: 10px;
+  width: 200px;
+}
