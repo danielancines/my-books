@@ -12,7 +12,7 @@
       controllerAs: 'StatisticsCtrl'
     });
   }
-
+  
   statistics.$inject = ['booksService'];
   function statistics(booksService){
     var vm = this;

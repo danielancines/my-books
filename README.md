@@ -1,2 +1,1 @@
-# my-books
-Angular site using gulp
+# YBooks - Your Personal Book Catalog

@@ -4,7 +4,6 @@
   angular.module('myBooksApp.services', [])
   .factory('booksService', booksService);
 
-  booksService.$inject = ['$http', 'config'];
   function booksService($http, config){
     var service = {
       getBooks: getBooks,
@@ -118,7 +117,11 @@
       function getBooksStatisticsCompleted(data, status, headers, config){
         var result = [];
         for (var i = 1; i < 13; i++) {
-          result.push(data.data.filter(b=>b.month == i).length);
+          result.push(data.data.filter(getDataByMonth).length);
+          //This is not good at all, I used lambda, but the uglify doesn't support ES6
+          function getDataByMonth(data){
+            return data.month == i;
+          }
         }
 
         return [result];
@@ -127,8 +130,6 @@
       function getBooksStatisticsError(message){
         return message;
       }
-
-
     }
   }
 })();
