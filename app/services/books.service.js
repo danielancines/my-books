@@ -11,7 +11,8 @@
       postBook: postBook,
       searchBookByIsbn: searchBookByIsbn,
       getBookById: getBookById,
-      updateBook: updateBook
+      updateBook: updateBook,
+      getBooksStatistics: getBooksStatistics
     };
 
     return service;
@@ -105,6 +106,29 @@
       function searchBookByIsbnError(data){
         return data.status;
       }
+    }
+
+    function getBooksStatistics(year){
+      return $http({
+        method: 'GET',
+        url: '/books?year=' + year
+      }).then(getBooksStatisticsCompleted)
+        .catch(getBooksStatisticsError);
+
+      function getBooksStatisticsCompleted(data, status, headers, config){
+        var result = [];
+        for (var i = 1; i < 13; i++) {
+          result.push(data.data.filter(b=>b.month == i).length);
+        }
+
+        return [result];
+      }
+
+      function getBooksStatisticsError(message){
+        return message;
+      }
+
+
     }
   }
 })();

@@ -14,7 +14,11 @@ var books = [{
   title: "The Lord of the Rings",
   description: "In ancient ting it with his own power so that he could rule all others.",
   isbn: "234234235",
-  coverUrl: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg"
+  coverUrl: "https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg",
+  readed: true,
+  day: 10,
+  month: 9,
+  year: 2016
 }];
 
 app.use(bodyParser.urlencoded({
@@ -39,12 +43,34 @@ app.put('/books', function(req, res){
   var book = books.find(b=> b.id == req.body.id);
   book.title = req.body.title;
   book.description = req.body.description;
+  book.readed = req.body.readed;
+  if (book.readed){
+    if (book.year == null){
+      setDate(book);
+    }
+  } else {
+    book.day = null;
+    book.month = null;
+    book.year = null;
+  }
+
+  function setDate(book){
+    var date = new Date();
+    book.day = date.getDate();
+    book.month = date.getMonth() + 1;
+    book.year = date.getFullYear();
+  }
 
   res.sendStatus(200);
 });
 
 app.get('/books', function(req,res){
-  res.send(books);
+  if (req.query.year === undefined){
+      res.send(books);
+    } else {
+      console.log(req.query.year);
+      res.send(books.filter(b=> b.year == req.query.year));
+  }
 });
 
 app.get('/books/:id', function(req,res){
@@ -57,8 +83,15 @@ switch (environment) {
         console.log('** BUILD **');
         app.use(express.static('./build/'));
         app.use('/*', express.static('./build/index.html'));
-        break;
-    case 'dev':
+    break;
+    case 'production':
+        console.log('** FINAL **');
+        app.use(express.static('./app/'));
+        app.use(express.static('./'));
+        // app.use(express.static('./tmp'));
+        app.use('/*', express.static('./app/index.html'));
+    break;
+    default:
         port = 7203;
         console.log('** DEV **');
         app.use(express.static('./app/'));
@@ -66,13 +99,6 @@ switch (environment) {
         // app.use(express.static('./tmp'));
         app.use('/*', express.static('./app/index.html'));
     break;
-    default:
-        console.log('** FINAL **');
-        app.use(express.static('./app/'));
-        app.use(express.static('./'));
-        // app.use(express.static('./tmp'));
-        app.use('/*', express.static('./app/index.html'));
-        break;
 }
 
 app.listen(port, function() {

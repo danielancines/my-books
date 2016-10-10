@@ -33,6 +33,7 @@
       .then(getBookCompleted);
 
       function getBookCompleted(book){
+        console.log(book);
         vm.book = book;
       };
     }
@@ -43,9 +44,10 @@
         description: vm.book.description,
         id: vm.book.id || guid.generate(),
         isbn: vm.book.isbn,
-        title: vm.book.title
+        title: vm.book.title,
+        readed: vm.book.readed
       };
-
+      console.log("Readed: " + book.readed);
       if (vm.editMode){
         booksService.updateBook(book)
         .then(saveCompleted);

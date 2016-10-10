@@ -7,7 +7,8 @@
     'ngAnimate',
     'myBooksApp.config',
     'myBooksApp.books',
-    'myBooksApp.services'
+    'myBooksApp.services',
+    'myBooksApp.statistics'
   ])
   .config(['$locationProvider', '$routeProvider', Routes]);
 
