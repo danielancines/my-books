@@ -5,10 +5,6 @@ var del = require('del');
 var config = require('./gulp.config')();
 var $ = require('gulp-load-plugins')({lazy:true});
 
-gulp.task('test', function(){
-  console.log('Hello World');
-});
-
 gulp.task('clean-build', function(done){
   log('Cleaning');
   clean(config.build, done);
