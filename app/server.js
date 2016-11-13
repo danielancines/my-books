@@ -83,11 +83,11 @@ switch (environment) {
     break;
     default:
         port = 7203;
-        console.log('** DEV **');
-        app.use(express.static('./app/'));
-        app.use(express.static('./'));
-        // app.use(express.static('./tmp'));
-        app.use('/*', express.static('./app/index.html'));
+        console.log('** DEV1 **');
+        // app.use(express.static('./app/'));
+        // app.use(express.static('./'));
+        // // app.use(express.static('./tmp'));
+        // app.use('/*', express.static('./app/index.html'));
     break;
 }
 
