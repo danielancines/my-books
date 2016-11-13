@@ -84,10 +84,10 @@ switch (environment) {
     default:
         port = 7203;
         console.log('** DEV1 **');
-        // app.use(express.static('./app/'));
-        // app.use(express.static('./'));
+        app.use(express.static('./app/'));
+        app.use(express.static('./'));
         // // app.use(express.static('./tmp'));
-        // app.use('/*', express.static('./app/index.html'));
+        app.use('/*', express.static('./app/index.html'));
     break;
 }
 
