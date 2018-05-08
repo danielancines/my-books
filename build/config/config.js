@@ -1,1 +1,0 @@
-!function(){"use strict";function o(o){o.timeOut=4e3,o.positionClass="toast-bottom-right",o.closeButton=!0}var t=angular.module("myBooksApp.config",[]).config(o);o.$inject=["toastrConfig"];var i={googleApiUrl:"https://www.googleapis.com/books/v1/volumes?q=isbn:",defaultBookCover:"/images/BookCover.jpeg"};t.value("config",i)}();

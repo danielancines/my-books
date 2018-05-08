@@ -1,1 +1,0 @@
-!function(){"use strict";function o(o,t){o.html5Mode(!0),t.otherwise({redirectTo:"/404"})}angular.module("myBooksApp",["ngRoute","toastr","uuid","ngAnimate","myBooksApp.config","myBooksApp.books","myBooksApp.services","myBooksApp.statistics"]).config(["$locationProvider","$routeProvider",o])}();

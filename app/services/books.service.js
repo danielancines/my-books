@@ -92,7 +92,7 @@
       function searchBookByIsbnCompleted(data){
         var book = {};
         if (data.data.totalItems >= 1){
-          book.thumbnail = data.data.items[0].volumeInfo.imageLinks.thumbnail;
+          //book.thumbnail = data.data.items[0].volumeInfo.imageLinks.thumbnail;
           book.title = data.data.items[0].volumeInfo.title;
           book.description = data.data.items[0].volumeInfo.description;
 
