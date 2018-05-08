@@ -1,0 +1,51 @@
+<!DOCTYPE html >
+<html ng-app="myBooksApp">
+<head >
+  <base href="/">
+  <title>YBooks</title>
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="../bower_components/angular-toastr/dist/angular-toastr.css" />
+  <!-- endbower -->
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/styles/app.css">
+</head>
+<body>
+  <div class="page-header mainPageTop">
+    <a class="mainHeader" href="/"><h1>YBooks <small>Your Personal Books Catalog</small></h1></a>
+  </div>
+  <nav class="mainNavbar navbar navbar-default navbar-static-top">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/new-book">New Book</a></li>
+        <li><a href="/statistics">Statistics</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div ng-view></div>
+
+  <!-- bower:js -->
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-route/angular-route.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+  <script src="../bower_components/angular-animate/angular-animate.js"></script>
+  <script src="../bower_components/angular-uuid/uuid.min.js"></script>
+  <script src="../bower_components/chart.js/dist/Chart.js"></script>
+  <script src="../bower_components/angular-chart.js/dist/angular-chart.js"></script>
+  <!-- endbower -->
+
+  <!-- inject:js -->
+  <script src="/app/controllers/books.module.js"></script>
+  <script src="/app/app.js"></script>
+  <script src="/app/controllers/books.js"></script>
+  <script src="/app/controllers/new-book.js"></script>
+  <script src="/app/controllers/statistics.js"></script>
+  <script src="/app/services/books.service.js"></script>
+  <script src="/app/config/config.js"></script>
+  <!-- endinject -->
+
+</body>
+</html>
