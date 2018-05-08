@@ -1,0 +1,18 @@
+<div class="new-book">
+  <form class="new-book-form">
+    <label for="booskIsbn" class="sr-only">Book Isbn</label>
+    <input class="form-control" ng-readonly="NewBookCtrl.editMode" ng-blur="NewBookCtrl.searchBookByIsbn()" type="text" id="bookIsbn" placeholder="ISBN" required="Book Title Required" autofocus ng-model="NewBookCtrl.book.isbn">
+    <label for="bookTitle" class="sr-only">Book Title</label>
+    <input class="form-control" type="text" id="bookTitle" placeholder="Title" required="Book Title Required" ng-model="NewBookCtrl.book.title">
+    <label for="bookDescription" class="sr-only">Book Description</label>
+    <textarea class="form-control" id="bookDescription" rows="8" cols="40" placeholder="Book description" ng-model="NewBookCtrl.book.description"></textarea>
+    <button type="button" ng-click="NewBookCtrl.save()" class="btn btn-primary btn-block new-book-button">{{NewBookCtrl.buttonTitle}}</button>
+    <a class="btn btn-default cancel-button" href="/">Cancel</a>
+  </form>
+</div>
+<div class="readedArea">
+  <img class="new-book-image" ng-src="{{NewBookCtrl.book.coverUrl}}" alt="Book Cover"/>
+  <label class="checkbox readedLabel" ng-show="NewBookCtrl.editMode">
+    <input class="checkbox" type="checkbox" ng-model="NewBookCtrl.book.readed">Readed?
+  </label>
+</div>
