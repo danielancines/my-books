@@ -4,7 +4,7 @@
 
 ## Demo - There is a demo available at Azure
 
-[Demo](http://ybooks.azurewebsites.net/)
+[Demo](http://ybooks.azurewebsites.net/) 
 
 ## Instructions
 You'll need bower to install the packages before run install.
