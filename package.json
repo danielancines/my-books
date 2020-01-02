@@ -1,6 +1,6 @@
 {
   "name": "my-books",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AngularJS site form scratch",
   "main": "app.js",
   "scripts": {
