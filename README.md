@@ -1,3 +1,5 @@
+![](https://img.shields.io/github/v/release/danielancines/my-books?color=blue&label=Version)
+![](https://img.shields.io/github/package-json/v/danielancines/my-books?color=red&label=Development)
 # YBooks - Your Personal Book Catalog
 
 **YBooks** is a project to test my skills using javascript libraries, Angular, HTML and CSS3.
