@@ -12,7 +12,7 @@
 You'll need bower to install the packages before run install.
 Site will run at http://localhost:7203, if you need to change the port, you can change it at server.js.
 
-## Instalattion
+## Instalattion 1
 
 ```
 $ npm install
