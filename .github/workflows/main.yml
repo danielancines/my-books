@@ -29,4 +29,5 @@ jobs:
       - name: Get Variables Values
         env: 
           IMAGE_TAG: ${{ github.sha }}
-        run: echo $IMAGE_TAG
+          ECR_REGISTRY: ASDF
+        run: echo 124454015367.dkr.ecr.sa-east-1.amazonaws.com/mypersonalapp:$IMAGE_TAG-amd64
