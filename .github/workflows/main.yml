@@ -27,4 +27,6 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Get Variables Values
-        run: echo ${{ github.sha }}
+        env: 
+          IMAGE_TAG: ${{ github.sha }}
+        run: echo $IMAGE_TAG
